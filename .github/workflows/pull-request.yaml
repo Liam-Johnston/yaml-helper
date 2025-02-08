@@ -18,13 +18,19 @@ jobs:
         id: checkout
         uses: actions/checkout@v4
 
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
+
       - name: Install Dependencies
         run: |
-          bun install --frozen-lockfile
+          bun install --frozen-lockfile --production
           bun build src/index.ts --outdir=dist --target=node
 
       - name: Test Local Action
         id: test-action
         uses: ./
         with:
-          milliseconds: 2000
+          file-location: 
+          milliseconds: |
+            test: 1
+            testing: 7

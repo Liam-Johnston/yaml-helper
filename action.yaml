@@ -1,19 +1,25 @@
 name: The name of your action here
 description: Provide a description here
-author: Your name or organization here
+author: Liam Johnston
 
 # Add your action's branding here. This will appear on the GitHub Marketplace.
 branding:
   icon: heart
   color: red
 
-# Define your inputs here.
 inputs:
-  milliseconds:
-    description: Your input description here
+  file-location:
+    description: Location of the yaml file
     required: true
-    default: '1000'
+  create-if-does-not-exist:
+    description: Should the file be created if it doesn't exist
+    required: false
+    default: 'false'
+  contents:
+    required: true
+    description: The contents of the file in YAML format
 
+# TODO: Provide Useful Outputs
 # Define your outputs here.
 outputs:
   time:
