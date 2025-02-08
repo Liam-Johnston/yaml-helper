@@ -65,6 +65,8 @@ const _run = async () => {
 
   const fileExists = existsSync(fileLocation);
 
+  const yamlSchema = core.getInput("yaml-schema");
+
   if (!createIfDoesNotExist && !fileExists) {
     throw new Error("File doesn't exist and flag to create file is not true");
   }
@@ -79,6 +81,7 @@ const _run = async () => {
     createIfDoesNotExist,
     rawContents,
     fileExists,
+    yamlSchema,
   });
 
   const parsedContents = getParsedContents(rawContents);
@@ -105,13 +108,15 @@ const _run = async () => {
     mergedContents,
   });
 
+  const fileHeader =
+    yamlSchema !== "" ? `# yaml-language-server: $schema=${yamlSchema}\n` : "";
+
   try {
-    await writeFile(fileLocation, stringify(mergedContents));
+    await writeFile(fileLocation, fileHeader + stringify(mergedContents));
 
     logger.info({
       msg: "wrote merged contents to file",
     });
-
   } catch (error: any) {
     logger.error({
       msg: "failed to write contents to file",

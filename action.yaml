@@ -18,6 +18,9 @@ inputs:
   content:
     required: true
     description: The contents of the file in YAML format
+  yaml-schema:
+    required: false
+    description: Schema for the yaml file if using a yaml-file-server
 
 # TODO: Provide Useful Outputs
 # Define your outputs here.
