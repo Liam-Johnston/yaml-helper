@@ -130,6 +130,7 @@ const _run = async () => {
       msg: "failed to write contents to file",
       finalContents,
       fileLocation,
+      ...error
     });
 
     throw new Error("Failed to write merged content to file");
