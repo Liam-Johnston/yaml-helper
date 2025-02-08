@@ -23,7 +23,8 @@ jobs:
 
       - name: Install Dependencies
         run: |
-          bun install --frozen-lockfile --production
+          # bun install --frozen-lockfile --production
+          bun install --frozen-lockfile
           bun build src/index.ts --outdir=dist --target=node
 
       - name: Test Local Action
@@ -31,10 +32,14 @@ jobs:
         uses: ./
         with:
           file-location: 'test.yaml'
-          create-if-does-not-exist: true
-          contents: |
+          # create-if-does-not-exist: true
+          content: |
             testVal: 1
             testArray:
               - test1
               - test3
               - test4
+
+      - name: test contents
+        run: |
+          cat test.yaml

@@ -1,26 +1,132 @@
 import * as core from "@actions/core";
 
+import { parse, stringify } from "yaml";
+
+import deepmerge from "deepmerge";
+import { existsSync } from "fs";
 import { logger } from "./logger";
-import { parse } from "yaml";
+import { readFile } from "fs/promises";
+import { writeFile } from "fs/promises";
 
-export const run = async () => {
-  const fileLocation = core.getInput("file-location");
-  const createIfDoesNotExist =
-    core.getInput("create-if-does-not-exist") === "true";
-  const contents = parse(core.getInput("contents"));
+const getParsedContents = (rawContents: string) => {
+  try {
+    return parse(rawContents);
+  } catch (error: any) {
+    logger.error({
+      msg: "failed to parse provided content - is the content in yaml format?",
+      rawContents,
+      ...error,
+    });
 
-  logger.info({
-    msg: "inputs",
-    fileLocation,
-    createIfDoesNotExist,
-    contents
+    throw new Error("Invalid format for provided contents");
+  }
+};
+
+const getExistingFileContents = async (
+  fileLocation: string,
+  fileExists: boolean
+) => {
+  if (!fileExists) {
+    logger.debug({
+      msg: "file doesn't exist so starting with a blank object",
+    });
+
+    return {};
+  }
+
+  const rawFileContents = await readFile(fileLocation, "utf8");
+
+  logger.debug({
+    msg: "loaded file contents",
+    rawFileContents,
   });
 
-  // const parsed = parse(contents)
+  try {
+    return parse(rawFileContents);
+  } catch (error: any) {
+    logger.error({
+      msg: "failed to parse supplied yaml file contents",
+      rawFileContents,
+      ...error,
+    });
+  }
+};
 
-  // core.
+const _run = async () => {
+  logger.debug({
+    msg: "action starting",
+  });
 
-  // core.info({
-  //   'msg'
-  // })
+  const fileLocation = core.getInput("file-location", {
+    required: true,
+  });
+
+  const createIfDoesNotExist = core.getBooleanInput("create-if-does-not-exist");
+
+  const fileExists = existsSync(fileLocation);
+
+  if (!createIfDoesNotExist && !fileExists) {
+    throw new Error("File doesn't exist and flag to create file is not true");
+  }
+
+  const rawContents = core.getInput("content", {
+    required: true,
+  });
+
+  logger.debug({
+    msg: "parameters determined",
+    fileLocation,
+    createIfDoesNotExist,
+    rawContents,
+    fileExists,
+  });
+
+  const parsedContents = getParsedContents(rawContents);
+
+  logger.debug({
+    msg: "parsed provided contents",
+    parsedContents,
+  });
+
+  const existingFileContents = await getExistingFileContents(
+    fileLocation,
+    fileExists
+  );
+
+  logger.debug({
+    msg: "loaded existing file contents (if it existed)",
+    existingFileContents,
+  });
+
+  const mergedContents = deepmerge(existingFileContents, parsedContents);
+
+  logger.debug({
+    msg: "merged contents of provided and existing file contents",
+    mergedContents,
+  });
+
+  try {
+    await writeFile(fileLocation, stringify(mergedContents));
+
+    logger.info({
+      msg: "wrote merged contents to file",
+    });
+
+  } catch (error: any) {
+    logger.error({
+      msg: "failed to write contents to file",
+      mergedContents,
+      fileLocation,
+    });
+
+    throw new Error("Failed to write merged content to file");
+  }
+};
+
+export const run = async () => {
+  try {
+    await _run();
+  } catch (error: any) {
+    core.setFailed(error.message ?? "action failed");
+  }
 };
