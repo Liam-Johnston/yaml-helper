@@ -15,7 +15,7 @@ inputs:
     description: Should the file be created if it doesn't exist
     required: false
     default: 'false'
-  contents:
+  content:
     required: true
     description: The contents of the file in YAML format
 
