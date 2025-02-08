@@ -9,6 +9,10 @@ import { readFile } from "fs/promises";
 import { writeFile } from "fs/promises";
 
 const getParsedContents = (rawContents: string) => {
+  if (rawContents === "") {
+    return {};
+  }
+
   try {
     return parse(rawContents);
   } catch (error: any) {
@@ -52,6 +56,12 @@ const getExistingFileContents = async (
   }
 };
 
+const generateFinalContents = (yamlSchema: string, mergedContents: any) => {
+  return yamlSchema !== ""
+    ? `# yaml-language-server: $schema=${yamlSchema}\n\n`
+    : "" + stringify(mergedContents);
+};
+
 const _run = async () => {
   logger.debug({
     msg: "action starting",
@@ -71,9 +81,7 @@ const _run = async () => {
     throw new Error("File doesn't exist and flag to create file is not true");
   }
 
-  const rawContents = core.getInput("content", {
-    required: true,
-  });
+  const rawContents = core.getInput("content");
 
   logger.debug({
     msg: "parameters determined",
@@ -108,24 +116,41 @@ const _run = async () => {
     mergedContents,
   });
 
-  const fileHeader =
-    yamlSchema !== "" ? `# yaml-language-server: $schema=${yamlSchema}\n` : "";
+  const finalContents = generateFinalContents(yamlSchema, mergedContents);
+
+  logger.debug({
+    msg: "generated file contents",
+    finalContents,
+  });
 
   try {
-    await writeFile(fileLocation, fileHeader + stringify(mergedContents));
-
-    logger.info({
-      msg: "wrote merged contents to file",
-    });
+    await writeFile(fileLocation, finalContents);
   } catch (error: any) {
     logger.error({
       msg: "failed to write contents to file",
-      mergedContents,
+      finalContents,
       fileLocation,
     });
 
     throw new Error("Failed to write merged content to file");
   }
+
+  const fileCreated = !fileExists;
+
+  logger.debug({
+    msg: "finished processing action",
+    finalContents,
+    fileLocation,
+    fileCreated,
+  });
+
+  core.setOutput("file-location", fileLocation);
+  core.setOutput("file-created", fileCreated);
+  core.setOutput("file-contents", finalContents);
+
+  logger.debug({
+    msg: "completed setting outputs - exiting",
+  });
 };
 
 export const run = async () => {

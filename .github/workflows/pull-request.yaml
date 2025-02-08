@@ -31,8 +31,7 @@ jobs:
         id: test-action
         uses: ./
         with:
-          file-location: 'test.yaml'
-          # create-if-does-not-exist: true
+          file-location: 'config/test.yaml'
           content: |
             testVal: 1
             testArray:
