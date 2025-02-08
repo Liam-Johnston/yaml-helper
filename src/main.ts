@@ -1,12 +1,14 @@
 import * as core from "@actions/core";
 
+import { mkdir, readFile, writeFile } from "fs/promises";
 import { parse, stringify } from "yaml";
 
 import deepmerge from "deepmerge";
+import {dirname} from "path";
 import { existsSync } from "fs";
 import { logger } from "./logger";
-import { readFile } from "fs/promises";
-import { writeFile } from "fs/promises";
+
+// import { writeFile } from "fs/promises";
 
 const getParsedContents = (rawContents: string) => {
   if (rawContents === "") {
@@ -123,14 +125,17 @@ const _run = async () => {
     finalContents,
   });
 
+  const dirPath = dirname(fileLocation);
+
   try {
+    await mkdir(dirPath, { recursive: true });
     await writeFile(fileLocation, finalContents);
   } catch (error: any) {
     logger.error({
       msg: "failed to write contents to file",
       finalContents,
       fileLocation,
-      ...error
+      ...error,
     });
 
     throw new Error("Failed to write merged content to file");
