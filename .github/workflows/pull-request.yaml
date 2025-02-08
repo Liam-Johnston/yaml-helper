@@ -30,7 +30,11 @@ jobs:
         id: test-action
         uses: ./
         with:
-          file-location: 
-          milliseconds: |
-            test: 1
-            testing: 7
+          file-location: 'test.yaml'
+          create-if-does-not-exist: true
+          contents: |
+            testVal: 1
+            testArray:
+              - test1
+              - test3
+              - test4
