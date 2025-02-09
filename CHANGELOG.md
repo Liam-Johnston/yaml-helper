@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## 1.2.2 (2025-02-09)
+
+
+### Bug Fixes
+
+* **error-handling:** handling expected error when new major version detected ([906031c](https://github.com/Liam-Johnston/yaml-helper/commit/906031c1e6802cb6a476da8f5e02572ae2746ca5))
+
 ## 1.2.1 (2025-02-09)
 
 ## 1.2.0 (2025-02-09)
