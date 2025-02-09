@@ -5,6 +5,9 @@ on:
    branches:
      - main
 
+permissions:
+  contents: write
+
 jobs:
   bump-version:
    name: Bump Action Version
@@ -31,3 +34,4 @@ jobs:
     - name: Bump Version
       run: |
         bunx commit-and-tag-version@12.4.1
+        git push --follow-tags origin main
