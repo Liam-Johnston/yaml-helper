@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## 1.1.3 (2025-02-09)
+
+
+### Bug Fixes
+
+* **metadata-main-location:** updated main location to be in root instead of under dist directory ([f920832](https://github.com/Liam-Johnston/yaml-helper/commit/f920832d6790f3c4cdf7587ad487988097ec171a))
+
 ## 1.1.2 (2025-02-09)
 
 
