@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## 1.1.2 (2025-02-09)
+
+
+### Bug Fixes
+
+* **correcting-glob:** providing glob pattern to release action ([ac486f1](https://github.com/Liam-Johnston/yaml-helper/commit/ac486f184dc96a9e922e57c94644f129aabb6bc4))
+
 ## 1.1.1 (2025-02-09)
 
 
