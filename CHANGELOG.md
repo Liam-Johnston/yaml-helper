@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## 1.1.7 (2025-02-09)
+
+
+### Bug Fixes
+
+* **using-commit-all-flag:** commit-and-tag should commit dist files ([dbcad8a](https://github.com/Liam-Johnston/yaml-helper/commit/dbcad8aa488a86dbbbe344d4b4a8a17681ca2cf6))
+
 ## 1.1.6 (2025-02-09)
 
 
