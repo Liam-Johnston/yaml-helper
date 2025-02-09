@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## 1.1.8 (2025-02-09)
+
+
+### Bug Fixes
+
+* **staging-dist:** staging built files ([d69eceb](https://github.com/Liam-Johnston/yaml-helper/commit/d69eceb2178f5fa7f3ae22b7887f9c2e622bbc49))
+
 ## 1.1.7 (2025-02-09)
 
 
