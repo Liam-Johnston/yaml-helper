@@ -41,6 +41,6 @@ jobs:
       uses: softprops/action-gh-release@v2
       with:
         files: |
-          actions.yaml
-          dist
+          action.yaml
+          dist/*
         tag_name: ${{ env.TAG_VERSION }}
