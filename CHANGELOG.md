@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## 1.1.6 (2025-02-09)
+
+
+### Bug Fixes
+
+* **including-dist:** included dist directory in git release commit ([8430639](https://github.com/Liam-Johnston/yaml-helper/commit/8430639431e8919e9c97bf8e7bac87b97e5cccaf))
+
 ## 1.1.5 (2025-02-09)
 
 
