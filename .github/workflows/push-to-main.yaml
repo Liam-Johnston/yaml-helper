@@ -35,3 +35,10 @@ jobs:
       run: |
         bunx commit-and-tag-version@12.4.1
         git push --follow-tags origin main
+
+    - name: Release
+      uses: softprops/action-gh-release@v2
+      with:
+        files: |
+          actions.yaml
+          dist
