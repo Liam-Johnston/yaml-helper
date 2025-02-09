@@ -1,6 +1,6 @@
 # YAML Helper
 
-A simple yaml helper github action used to modify and generate yaml files.
+A simple focused yaml helper github action used to modify and generate yaml files.
 
 Allows specifying new yaml file values in yaml syntax directly in your workflow.
 
@@ -40,6 +40,3 @@ This will result in a file getting created in the `./config` directory
 | `file-location` | Location that the final yaml file is stored.               |
 | `file-created`  | Boolean value to indicate if a new file was created or not |
 | `file-contents` | The final file contents in as a string                     |
-
-
-

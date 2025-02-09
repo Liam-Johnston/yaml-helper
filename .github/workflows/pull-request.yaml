@@ -1,4 +1,4 @@
-name: Continuous Integration
+name: Pull Request
 
 on:
   pull_request:
@@ -23,8 +23,7 @@ jobs:
 
       - name: Install Dependencies
         run: |
-          # bun install --frozen-lockfile --production
-          bun install --frozen-lockfile
+          bun install --frozen-lockfile --production
           bun build src/index.ts --outdir=dist --target=node
 
       - name: Test Local Action
@@ -39,6 +38,4 @@ jobs:
               - test3
               - test4
 
-      - name: test contents
-        run: |
-          cat ${{ steps.test-action.outputs.file-location }}
+# TODO: Automated Tests
