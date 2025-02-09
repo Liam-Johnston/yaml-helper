@@ -35,6 +35,7 @@ jobs:
       run: |
         bunx commit-and-tag-version@12.4.1
         git push --follow-tags origin main
+        echo "TAG_VERSION=$(git tag --points-at HEAD)" >> $GITHUB_ENV
 
     - name: Release
       uses: softprops/action-gh-release@v2
@@ -42,3 +43,4 @@ jobs:
         files: |
           actions.yaml
           dist
+        tag_name: ${{ env.TAG_VERSION }}
