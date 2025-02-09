@@ -47,7 +47,7 @@ jobs:
       run: |
         TAG_MAJOR_VERSION=$(echo "V$(echo "${TAG_VERSION#v}" | cut -d. -f1)")
         echo "TAG_MAJOR_VERSION=${TAG_MAJOR_VERSION}" >> $GITHUB_ENV
-        git tag -d ${TAG_MAJOR_VERSION} 2>/dev/null
+        git tag -d ${TAG_MAJOR_VERSION} 2>/dev/null || echo "New major version"
         git push origin ${TAG_MAJOR_VERSION} --force
 
     - name: Update Major Release
