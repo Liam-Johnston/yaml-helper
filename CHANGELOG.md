@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## 1.1.9 (2025-02-09)
+
+
+### Bug Fixes
+
+* **test-dist-generated:** test dist files are generated ([c76875e](https://github.com/Liam-Johnston/yaml-helper/commit/c76875efb662c71d10a655f6ffd37d570b102629))
+
 ## 1.1.8 (2025-02-09)
 
 
