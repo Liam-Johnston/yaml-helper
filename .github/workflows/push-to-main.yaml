@@ -18,7 +18,11 @@ jobs:
     - name: Setup Bun
       uses: oven-sh/setup-bun@v2
 
+    - name: Install & Build
+      run: |
+        bun install --frozen-lockfile --production
+        bun build src/index.ts --outdir=dist --target=node
+
     - name: Bump Version
       run: |
-        bun build src/index.ts --outdir=dist --target=node
         bunx commit-and-tag-version@12.4.1
