@@ -1,23 +1,35 @@
-name: The name of your action here
-description: Provide a description here
-author: Your name or organization here
+name: YAML Helper
+description: Simple yaml helper that allows merging values into existing yaml files
+author: Liam Johnston
 
-# Add your action's branding here. This will appear on the GitHub Marketplace.
 branding:
-  icon: heart
+  icon: file-text
   color: red
 
-# Define your inputs here.
 inputs:
-  milliseconds:
-    description: Your input description here
+  file-location:
+    description: Location of the yaml file
     required: true
-    default: '1000'
+  create-if-does-not-exist:
+    description: Should the file be created if it doesn't exist
+    required: false
+    default: "true"
+  content:
+    required: false
+    description: The contents of the file in YAML format
+    default: ""
+  yaml-schema:
+    required: false
+    description: Schema for the yaml file if using a yaml-file-server
+    default: ""
 
-# Define your outputs here.
 outputs:
-  time:
-    description: Your output description here
+  file-location:
+    description: Where the outputted file was written to
+  file-created:
+    description: If a new file was created from this action
+  file-contents:
+    description: The final contents of the resultant file
 
 runs:
   using: node20

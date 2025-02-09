@@ -1,3 +1,5 @@
-import { run } from './main'
+import {} from "./constants";
 
-run()
+import { run } from "./main";
+
+run();

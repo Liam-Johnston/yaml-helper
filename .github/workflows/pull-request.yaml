@@ -1,0 +1,41 @@
+name: Pull Request
+
+on:
+  pull_request:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  test-action:
+    name: GitHub Actions Test
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        id: checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
+
+      - name: Install Dependencies
+        run: |
+          bun install --frozen-lockfile --production
+          bun build src/index.ts --outdir=dist --target=node
+
+      - name: Test Local Action
+        id: test-action
+        uses: ./
+        with:
+          file-location: 'config/test.yaml'
+          content: |
+            testVal: 1
+            testArray:
+              - test1
+              - test3
+              - test4
+
+# TODO: Automated Tests

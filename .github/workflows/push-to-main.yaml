@@ -1,0 +1,24 @@
+name: Push to Main
+
+on:
+  push:
+   branches:
+     - main
+
+jobs:
+  bump-version:
+   name: Bump Action Version
+   runs-on: ubuntu-latest
+
+   steps:
+    - name: Checkout
+      id: checkout
+      uses: actions/checkout@v4
+
+    - name: Setup Bun
+      uses: oven-sh/setup-bun@v2
+
+    - name: Bump Version
+      run: |
+        bun build src/index.ts --outdir=dist --target=node
+        bunx commit-and-tag-version@12.4.1

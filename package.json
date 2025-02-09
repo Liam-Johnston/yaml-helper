@@ -3,13 +3,16 @@
   "module": "src/index.ts",
   "type": "module",
   "devDependencies": {
-    "@github/local-action": "^2.6.1",
     "@types/bun": "latest"
   },
   "peerDependencies": {
     "typescript": "^5.0.0"
   },
   "dependencies": {
-    "@actions/core": "^1.11.1"
+    "@actions/core": "^1.11.1",
+    "deepmerge": "^4.3.1",
+    "pino": "^9.6.0",
+    "pino-pretty": "^13.0.0",
+    "yaml": "^2.7.0"
   }
 }
