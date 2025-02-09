@@ -30,6 +30,7 @@ jobs:
       run: |
         bun install --frozen-lockfile --production
         bun build src/index.ts --outdir=dist --target=node
+        git add dist/index.js
 
     - name: Bump Version
       run: |
@@ -40,7 +41,4 @@ jobs:
     - name: Release
       uses: softprops/action-gh-release@v2
       with:
-        # files: |
-        #   action.yaml
-        #   dist/*
         tag_name: ${{ env.TAG_VERSION }}
