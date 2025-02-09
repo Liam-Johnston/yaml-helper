@@ -33,9 +33,7 @@ jobs:
 
     - name: Bump Version
       run: |
-        bunx commit-and-tag-version@12.4.1
-        git add dist/index.js
-        git commit --amend --no-edit
+        bunx commit-and-tag-version@12.5.0 --commit-all
         git push --follow-tags origin main
         echo "TAG_VERSION=$(git tag --points-at HEAD)" >> $GITHUB_ENV
 
