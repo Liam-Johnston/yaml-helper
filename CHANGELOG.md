@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## 1.1.10 (2025-02-09)
+
+
+### Bug Fixes
+
+* **correct-entrypoint-path:** fix entrypoint path to be under dist directory ([b7ebd3a](https://github.com/Liam-Johnston/yaml-helper/commit/b7ebd3a42a469248c5333a75791e2dbbd6e5bc12))
+
 ## 1.1.9 (2025-02-09)
 
 
