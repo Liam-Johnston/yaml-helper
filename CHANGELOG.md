@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## 1.1.11 (2025-02-09)
+
+
+### Bug Fixes
+
+* **pretty-print-transport:** fix for allowing single file build of action ([98cbc58](https://github.com/Liam-Johnston/yaml-helper/commit/98cbc5854e3fa9fc548cc59a09849a886671496b))
+
 ## 1.1.10 (2025-02-09)
 
 
