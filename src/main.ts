@@ -8,8 +8,6 @@ import {dirname} from "path";
 import { existsSync } from "fs";
 import { logger } from "./logger";
 
-// import { writeFile } from "fs/promises";
-
 const getParsedContents = (rawContents: string) => {
   if (rawContents === "") {
     return {};
