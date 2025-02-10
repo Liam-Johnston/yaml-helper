@@ -32699,9 +32699,9 @@ var getExistingFileContents = async (fileLocation, fileExists) => {
   }
 };
 var generateFinalContents = (yamlSchema, mergedContents) => {
-  return yamlSchema !== "" ? `# yaml-language-server: $schema=${yamlSchema}
+  return (yamlSchema !== "" ? `# yaml-language-server: $schema=${yamlSchema}
 
-` : "" + $stringify(mergedContents);
+` : "") + $stringify(mergedContents);
 };
 var _run = async () => {
   logger.debug({

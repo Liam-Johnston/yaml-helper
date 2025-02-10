@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## 1.2.5 (2025-02-10)
+
+
+### Bug Fixes
+
+* **broken-yaml-syntax-logic:** fixing issue where if yaml-syntax is defined contents is ignored ([8f72b8e](https://github.com/Liam-Johnston/yaml-helper/commit/8f72b8e46466b9321370090fa23b95849f3df8a1))
+
 ## 1.2.4 (2025-02-09)
 
 ## 1.2.3 (2025-02-09)
