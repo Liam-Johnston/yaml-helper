@@ -4,7 +4,7 @@ import { mkdir, readFile, writeFile } from "fs/promises";
 import { parse, stringify } from "yaml";
 
 import deepmerge from "deepmerge";
-import {dirname} from "path";
+import { dirname } from "path";
 import { existsSync } from "fs";
 import { logger } from "./logger";
 
@@ -57,9 +57,11 @@ const getExistingFileContents = async (
 };
 
 const generateFinalContents = (yamlSchema: string, mergedContents: any) => {
-  return yamlSchema !== ""
-    ? `# yaml-language-server: $schema=${yamlSchema}\n\n`
-    : "" + stringify(mergedContents);
+  return (
+    (yamlSchema !== ""
+      ? `# yaml-language-server: $schema=${yamlSchema}\n\n`
+      : "") + stringify(mergedContents)
+  );
 };
 
 const _run = async () => {
