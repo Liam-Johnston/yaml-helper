@@ -498,8 +498,7 @@ var require_tunnel = __commonJS((exports) => {
       console.error.apply(console, args);
     };
   } else {
-    debug = function() {
-    };
+    debug = function() {};
   }
   exports.debug = debug;
 });
@@ -927,8 +926,7 @@ var require_util = __commonJS((exports, module) => {
   var { stringify } = __require("querystring");
   var { headerNameLowerCasedRecord } = require_constants();
   var [nodeMajor, nodeMinor] = process.versions.node.split(".").map((v) => Number(v));
-  function nop() {
-  }
+  function nop() {}
   function isStream(obj) {
     return obj && typeof obj === "object" && typeof obj.pipe === "function" && typeof obj.on === "function";
   }
@@ -1505,8 +1503,7 @@ var require_PartStream = __commonJS((exports, module) => {
     ReadableStream.call(this, opts);
   }
   inherits(PartStream, ReadableStream);
-  PartStream.prototype._read = function(n) {
-  };
+  PartStream.prototype._read = function(n) {};
   module.exports = PartStream;
 });
 
@@ -1633,8 +1630,7 @@ var require_Dicer = __commonJS((exports, module) => {
   var B_ONEDASH = Buffer.from("-");
   var B_CRLF = Buffer.from(`\r
 `);
-  var EMPTY_FN = function() {
-  };
+  var EMPTY_FN = function() {};
   function Dicer(cfg) {
     if (!(this instanceof Dicer)) {
       return new Dicer(cfg);
@@ -1951,8 +1947,7 @@ var require_decodeText = __commonJS((exports, module) => {
       if (textDecoders.has(exports.toString())) {
         try {
           return textDecoders.get(exports).decode(data);
-        } catch {
-        }
+        } catch {}
       }
       return typeof data === "string" ? data : data.toString();
     }
@@ -2845,8 +2840,7 @@ var require_multipart = __commonJS((exports, module) => {
     this.truncated = false;
   }
   inherits(FileStream, Readable);
-  FileStream.prototype._read = function(n) {
-  };
+  FileStream.prototype._read = function(n) {};
   module.exports = Multipart;
 });
 
@@ -3527,8 +3521,7 @@ var require_util2 = __commonJS((exports, module) => {
     crypto = __require("crypto");
     const possibleRelevantHashes = ["sha256", "sha384", "sha512"];
     supportedHashes = crypto.getHashes().filter((hash) => possibleRelevantHashes.includes(hash));
-  } catch {
-  }
+  } catch {}
   function responseURL(response) {
     const urlList = response.urlList;
     const length = urlList.length;
@@ -3885,8 +3878,7 @@ var require_util2 = __commonJS((exports, module) => {
     }
     return true;
   }
-  function tryUpgradeRequestToAPotentiallyTrustworthyURL(request) {
-  }
+  function tryUpgradeRequestToAPotentiallyTrustworthyURL(request) {}
   function sameOrigin(A, B) {
     if (A.origin === B.origin && A.origin === "null") {
       return true;
@@ -5096,8 +5088,7 @@ var require_body = __commonJS((exports, module) => {
           controller.enqueue(typeof source === "string" ? textEncoder.encode(source) : source);
           queueMicrotask(() => readableStreamClose(controller));
         },
-        start() {
-        },
+        start() {},
         type: undefined
       });
     }
@@ -6099,8 +6090,7 @@ var require_connect = __commonJS((exports, module) => {
   }
   function setupTimeout(onConnectTimeout2, timeout) {
     if (!timeout) {
-      return () => {
-      };
+      return () => {};
     }
     let s1 = null;
     let s2 = null;
@@ -6542,8 +6532,7 @@ var require_RedirectHandler = __commonJS((exports, module) => {
       }
     }
     onData(chunk) {
-      if (this.location) {
-      } else {
+      if (this.location) {} else {
         return this.handler.onData(chunk);
       }
     }
@@ -6916,8 +6905,7 @@ var require_client = __commonJS((exports, module) => {
       const origin = opts.origin || this[kUrl].origin;
       const request = this[kHTTPConnVersion] === "h2" ? Request[kHTTP2BuildRequest](origin, opts, handler) : Request[kHTTP1BuildRequest](origin, opts, handler);
       this[kQueue].push(request);
-      if (this[kResuming]) {
-      } else if (util.bodyLength(request.body) == null && util.isIterable(request.body)) {
+      if (this[kResuming]) {} else if (util.bodyLength(request.body) == null && util.isIterable(request.body)) {
         this[kResuming] = 1;
         process.nextTick(resume, this);
       } else {
@@ -7536,8 +7524,7 @@ var require_client = __commonJS((exports, module) => {
         });
       });
       if (client.destroyed) {
-        util.destroy(socket.on("error", () => {
-        }), new ClientDestroyedError);
+        util.destroy(socket.on("error", () => {}), new ClientDestroyedError);
         return;
       }
       client[kConnecting] = false;
@@ -8945,8 +8932,7 @@ var require_readable = __commonJS((exports, module) => {
   var kBody = Symbol("kBody");
   var kAbort = Symbol("abort");
   var kContentType = Symbol("kContentType");
-  var noop = () => {
-  };
+  var noop = () => {};
   module.exports = class BodyReadable extends Readable {
     constructor({
       resume,
@@ -9122,8 +9108,7 @@ var require_readable = __commonJS((exports, module) => {
       });
     }
     consume2.stream.resume();
-    while (consume2.stream.read() != null) {
-    }
+    while (consume2.stream.read() != null) {}
   }
   function consumeEnd(consume2) {
     const { type, body, resolve, stream, length } = consume2;
@@ -9207,8 +9192,7 @@ var require_util3 = __commonJS((exports, module) => {
         process.nextTick(callback, new ResponseStatusCodeError(`Response status code ${statusCode}${statusMessage ? `: ${statusMessage}` : ""}`, statusCode, headers, payload));
         return;
       }
-    } catch (err) {
-    }
+    } catch (err) {}
     process.nextTick(callback, new ResponseStatusCodeError(`Response status code ${statusCode}${statusMessage ? `: ${statusMessage}` : ""}`, statusCode, headers));
   }
   module.exports = { getResolveErrorBodyCallback };
@@ -10210,8 +10194,7 @@ var require_mock_utils = __commonJS((exports, module) => {
       handler.onComplete(responseTrailers);
       deleteMockDispatch(mockDispatches, key);
     }
-    function resume() {
-    }
+    function resume() {}
     return true;
   }
   function buildMockDispatch() {
@@ -10791,8 +10774,7 @@ var require_proxy_agent = __commonJS((exports, module) => {
               }
             });
             if (statusCode !== 200) {
-              socket.on("error", () => {
-              }).destroy();
+              socket.on("error", () => {}).destroy();
               callback(new RequestAbortedError(`Proxy response (${statusCode}) !== 200 when HTTP Tunneling`));
             }
             if (opts2.protocol !== "https:") {
@@ -11209,8 +11191,7 @@ var require_headers = __commonJS((exports, module) => {
     }
     if (headers[kGuard] === "immutable") {
       throw new TypeError("immutable");
-    } else if (headers[kGuard] === "request-no-cors") {
-    }
+    } else if (headers[kGuard] === "request-no-cors") {}
     return headers[kHeadersList].append(name, value);
   }
 
@@ -11321,8 +11302,7 @@ var require_headers = __commonJS((exports, module) => {
       }
       if (this[kGuard] === "immutable") {
         throw new TypeError("immutable");
-      } else if (this[kGuard] === "request-no-cors") {
-      }
+      } else if (this[kGuard] === "request-no-cors") {}
       if (!this[kHeadersList].contains(name)) {
         return;
       }
@@ -11375,8 +11355,7 @@ var require_headers = __commonJS((exports, module) => {
       }
       if (this[kGuard] === "immutable") {
         throw new TypeError("immutable");
-      } else if (this[kGuard] === "request-no-cors") {
-      }
+      } else if (this[kGuard] === "request-no-cors") {}
       this[kHeadersList].set(name, value);
     }
     getSetCookie() {
@@ -12051,8 +12030,7 @@ var require_request2 = __commonJS((exports, module) => {
             } else if (getEventListeners(signal, "abort").length >= defaultMaxListeners) {
               setMaxListeners(100, signal);
             }
-          } catch {
-          }
+          } catch {}
           util.addAbortListener(signal, abort);
           requestFinalizer.register(ac, { signal, abort });
         }
@@ -12641,10 +12619,8 @@ var require_fetch = __commonJS((exports, module) => {
     if (!request.headersList.contains("accept-language")) {
       request.headersList.append("accept-language", "*");
     }
-    if (request.priority === null) {
-    }
-    if (subresourceSet.has(request.destination)) {
-    }
+    if (request.priority === null) {}
+    if (subresourceSet.has(request.destination)) {}
     mainFetch(fetchParams).catch((err) => {
       fetchParams.controller.terminate(err);
     });
@@ -12694,8 +12670,7 @@ var require_fetch = __commonJS((exports, module) => {
       return response;
     }
     if (response.status !== 0 && !response.internalResponse) {
-      if (request.responseTainting === "cors") {
-      }
+      if (request.responseTainting === "cors") {}
       if (request.responseTainting === "basic") {
         response = filterResponse(response, "basic");
       } else if (request.responseTainting === "cors") {
@@ -12831,8 +12806,7 @@ var require_fetch = __commonJS((exports, module) => {
         controller.enqueue(chunk);
       };
       const transformStream = new TransformStream({
-        start() {
-        },
+        start() {},
         transform: identityTransformAlgorithm,
         flush: processResponseEndOfBody
       }, {
@@ -12862,8 +12836,7 @@ var require_fetch = __commonJS((exports, module) => {
     let response = null;
     let actualResponse = null;
     const timingInfo = fetchParams.timingInfo;
-    if (request.serviceWorkers === "all") {
-    }
+    if (request.serviceWorkers === "all") {}
     if (response === null) {
       if (request.redirect === "follow") {
         request.serviceWorkers = "none";
@@ -12977,8 +12950,7 @@ var require_fetch = __commonJS((exports, module) => {
     if (contentLengthHeaderValue != null) {
       httpRequest.headersList.append("content-length", contentLengthHeaderValue);
     }
-    if (contentLength != null && httpRequest.keepalive) {
-    }
+    if (contentLength != null && httpRequest.keepalive) {}
     if (httpRequest.referrer instanceof URL) {
       httpRequest.headersList.append("referer", isomorphicEncode(httpRequest.referrer.href));
     }
@@ -13012,22 +12984,18 @@ var require_fetch = __commonJS((exports, module) => {
       }
     }
     httpRequest.headersList.delete("host");
-    if (includeCredentials) {
-    }
+    if (includeCredentials) {}
     if (httpCache == null) {
       httpRequest.cache = "no-store";
     }
-    if (httpRequest.mode !== "no-store" && httpRequest.mode !== "reload") {
-    }
+    if (httpRequest.mode !== "no-store" && httpRequest.mode !== "reload") {}
     if (response == null) {
       if (httpRequest.mode === "only-if-cached") {
         return makeNetworkError("only if cached");
       }
       const forwardResponse = await httpNetworkFetch(httpFetchParams, includeCredentials, isNewConnectionFetch);
-      if (!safeMethodsSet.has(httpRequest.method) && forwardResponse.status >= 200 && forwardResponse.status <= 399) {
-      }
-      if (revalidatingFlag && forwardResponse.status === 304) {
-      }
+      if (!safeMethodsSet.has(httpRequest.method) && forwardResponse.status >= 200 && forwardResponse.status <= 399) {}
+      if (revalidatingFlag && forwardResponse.status === 304) {}
       if (response == null) {
         response = forwardResponse;
       }
@@ -13053,8 +13021,7 @@ var require_fetch = __commonJS((exports, module) => {
       fetchParams.controller.connection.destroy();
       response = await httpNetworkOrCacheFetch(fetchParams, isAuthenticationFetch, true);
     }
-    if (isAuthenticationFetch) {
-    }
+    if (isAuthenticationFetch) {}
     return response;
   }
   async function httpNetworkFetch(fetchParams, includeCredentials = false, forceNewConnection = false) {
@@ -13077,9 +13044,7 @@ var require_fetch = __commonJS((exports, module) => {
       request.cache = "no-store";
     }
     const newConnection = forceNewConnection ? "yes" : "no";
-    if (request.mode === "websocket") {
-    } else {
-    }
+    if (request.mode === "websocket") {} else {}
     let requestBody = null;
     if (request.body == null && fetchParams.processRequestEndOfBody) {
       queueMicrotask(() => fetchParams.processRequestEndOfBody());
@@ -13294,9 +13259,7 @@ var require_fetch = __commonJS((exports, module) => {
             status,
             statusText,
             headersList: headers[kHeadersList],
-            body: decoders.length ? pipeline(this.body, ...decoders, () => {
-            }) : this.body.on("error", () => {
-            })
+            body: decoders.length ? pipeline(this.body, ...decoders, () => {}) : this.body.on("error", () => {})
           });
           return true;
         },
@@ -15551,8 +15514,7 @@ var require_connection = __commonJS((exports, module) => {
   var crypto;
   try {
     crypto = __require("crypto");
-  } catch {
-  }
+  } catch {}
   function establishWebSocketConnection(url, protocols, ws, onEstablish, options) {
     const requestURL = url;
     requestURL.protocol = url.protocol === "ws:" ? "http:" : "https:";
@@ -15678,8 +15640,7 @@ var require_frame = __commonJS((exports, module) => {
   var crypto;
   try {
     crypto = __require("crypto");
-  } catch {
-  }
+  } catch {}
 
   class WebsocketFrameSend {
     constructor(data) {
@@ -16041,8 +16002,7 @@ var require_websocket = __commonJS((exports, module) => {
           throw new DOMException2(`Reason must be less than 123 bytes; received ${reasonByteLength}`, "SyntaxError");
         }
       }
-      if (this[kReadyState] === WebSocket.CLOSING || this[kReadyState] === WebSocket.CLOSED) {
-      } else if (!isEstablished(this)) {
+      if (this[kReadyState] === WebSocket.CLOSING || this[kReadyState] === WebSocket.CLOSED) {} else if (!isEstablished(this)) {
         failWebsocketConnection(this, "Connection was closed before it was established.");
         this[kReadyState] = WebSocket.CLOSING;
       } else if (!isClosing(this)) {
@@ -17022,8 +16982,7 @@ var require_lib = __commonJS((exports) => {
               response.result = obj;
             }
             response.headers = res.message.headers;
-          } catch (err) {
-          }
+          } catch (err) {}
           if (statusCode > 299) {
             let msg;
             if (obj && obj.message) {
@@ -24838,8 +24797,7 @@ var require_parser = __commonJS((exports) => {
             break loop;
         }
       }
-    while (prev[++i]?.type === "space") {
-    }
+    while (prev[++i]?.type === "space") {}
     return prev.splice(i, prev.length);
   }
   function fixFlowSeqItems(fc) {
@@ -26497,8 +26455,7 @@ var require_modifiers = __commonJS((exports, module) => {
                 store.push(rv);
                 n[wck] = nv;
               } else {
-                if (wcov[k] === nv) {
-                } else if (nv === undefined && censor !== undefined || has(wcov, k) && nv === ov) {
+                if (wcov[k] === nv) {} else if (nv === undefined && censor !== undefined || has(wcov, k) && nv === ov) {
                   redactPathCurrent = node(redactPathCurrent, wck, depth);
                 } else {
                   redactPathCurrent = node(redactPathCurrent, wck, depth);
@@ -26515,8 +26472,7 @@ var require_modifiers = __commonJS((exports, module) => {
         ov = n[k];
         redactPathCurrent = node(redactPathCurrent, k, depth);
         nv = i !== lastPathIndex ? ov : isCensorFct ? censorFctTakesPath ? censor(ov, [...path, originalKey, ...afterPath]) : censor(ov) : censor;
-        if (has(n, k) && nv === ov || nv === undefined && censor !== undefined) {
-        } else {
+        if (has(n, k) && nv === ov || nv === undefined && censor !== undefined) {} else {
           const rv = restoreInstr(redactPathCurrent, ov, o[originalKey]);
           store.push(rv);
           n[k] = nv;
@@ -26525,8 +26481,7 @@ var require_modifiers = __commonJS((exports, module) => {
       }
       if (typeof n !== "object")
         break;
-      if (ov === oov || typeof ov === "undefined") {
-      }
+      if (ov === oov || typeof ov === "undefined") {}
     }
   }
   function get(o, p) {
@@ -26552,9 +26507,7 @@ var require_modifiers = __commonJS((exports, module) => {
           store.push(rv);
           n[wck] = nv;
         } else {
-          if (wcov[k] === nv) {
-          } else if (nv === undefined && censor !== undefined || has(wcov, k) && nv === ov) {
-          } else {
+          if (wcov[k] === nv) {} else if (nv === undefined && censor !== undefined || has(wcov, k) && nv === ov) {} else {
             const rv = restoreInstr(node(redactPathCurrent, k, depth + 1), ov, parent);
             store.push(rv);
             wcov[k] = nv;
@@ -27025,8 +26978,7 @@ var require_atomic_sleep = __commonJS((exports, module) => {
         throw RangeError("sleep: ms must be a number that is greater than 0 but less than Infinity");
       }
       const target = Date.now() + Number(ms);
-      while (target > Date.now()) {
-      }
+      while (target > Date.now()) {}
     };
     module.exports = sleep;
   }
@@ -27493,8 +27445,7 @@ var require_sonic_boom = __commonJS((exports, module) => {
     }
     try {
       fs.fsyncSync(this.fd);
-    } catch {
-    }
+    } catch {}
   }
   function flushBufferSync() {
     if (this.destroyed) {
@@ -27582,8 +27533,7 @@ var require_sonic_boom = __commonJS((exports, module) => {
     assert(typeof sonic.fd === "number", `sonic.fd must be a number, got ${typeof sonic.fd}`);
     try {
       fs.fsync(sonic.fd, closeWrapped);
-    } catch {
-    }
+    } catch {}
     function closeWrapped() {
       if (sonic.fd !== 1 && sonic.fd !== 2) {
         fs.close(sonic.fd, done);
@@ -27854,10 +27804,8 @@ var require_thread_stream = __commonJS((exports, module) => {
   }
 
   class FakeFinalizationRegistry {
-    register() {
-    }
-    unregister() {
-    }
+    register() {}
+    unregister() {}
   }
   var FinalizationRegistry2 = process.env.NODE_V8_COVERAGE ? FakeFinalizationRegistry : global.FinalizationRegistry || FakeFinalizationRegistry;
   var WeakRef2 = process.env.NODE_V8_COVERAGE ? FakeWeakRef : global.WeakRef || FakeWeakRef;
@@ -28135,8 +28083,7 @@ var require_thread_stream = __commonJS((exports, module) => {
       error(stream, err);
     }
     if (!stream.worker.exited) {
-      stream.worker.terminate().catch(() => {
-      }).then(() => {
+      stream.worker.terminate().catch(() => {}).then(() => {
         stream[kImpl].closed = true;
         stream.emit("close");
       });
@@ -28404,8 +28351,7 @@ var require_tools = __commonJS((exports, module) => {
   } = require_symbols6();
   var { isMainThread } = __require("worker_threads");
   var transport = require_transport();
-  function noop() {
-  }
+  function noop() {}
   function genLog(level, hook) {
     if (!hook)
       return LOG;
@@ -28741,8 +28687,7 @@ var require_levels = __commonJS((exports, module) => {
         if (typeof stream.flushSync === "function") {
           try {
             stream.flushSync();
-          } catch (e) {
-          }
+          } catch (e) {}
         }
       };
     },
@@ -29082,8 +29027,7 @@ var require_proto = __commonJS((exports, module) => {
     }
     stream.write(streamWriteHook ? streamWriteHook(s) : s);
   }
-  function noop() {
-  }
+  function noop() {}
   function flush(cb) {
     if (cb != null && typeof cb !== "function") {
       throw Error("callback must be a function");
@@ -30288,8 +30232,7 @@ var require_once = __commonJS((exports, module) => {
 // node_modules/end-of-stream/index.js
 var require_end_of_stream = __commonJS((exports, module) => {
   var once = require_once();
-  var noop = function() {
-  };
+  var noop = function() {};
   var isRequest = function(stream) {
     return stream.setHeader && typeof stream.abort === "function";
   };
@@ -30385,10 +30328,8 @@ var require_pump = __commonJS((exports, module) => {
   var fs;
   try {
     fs = __require("fs");
-  } catch (e) {
-  }
-  var noop = function() {
-  };
+  } catch (e) {}
+  var noop = function() {};
   var ancient = /^v?\.0/.test(process.version);
   var isFn = function(fn) {
     return typeof fn === "function";
@@ -30821,8 +30762,7 @@ var require_colors = __commonJS((exports, module) => {
 
 // node_modules/pino-pretty/lib/utils/noop.js
 var require_noop = __commonJS((exports, module) => {
-  module.exports = function noop() {
-  };
+  module.exports = function noop() {};
 });
 
 // node_modules/pino-pretty/lib/utils/build-safe-sonic-boom.js
@@ -30999,8 +30939,7 @@ var require_cjs2 = __commonJS((exports) => {
     if (Constructor && ~toStringFunction.call(Constructor).indexOf("[native code]")) {
       try {
         return new Constructor;
-      } catch (_a2) {
-      }
+      } catch (_a2) {}
     }
     return create(prototype);
   }
