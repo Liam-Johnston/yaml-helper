@@ -12,7 +12,7 @@ Example usage is as follows:
 
 ``` yaml
 - name: Test Local Action
-  uses: Liam-Johnston/yaml-helper@v1
+  uses: Liam-Johnston/yaml-helper@V1
   with:
     file-location: 'config/app.yaml'
     create-if-does-not-exist: true
